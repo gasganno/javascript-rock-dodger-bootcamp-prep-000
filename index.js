@@ -93,15 +93,16 @@ function createRock(x) {
   function step(rock) {
     rock.style.top = `${top += 2}px`
 
-    if (top < 200) {
+    if (top < 400) {
       window.requestAnimationFrame(step)
     }
   }
 
   window.requestAnimationFrame(step)
+
      if (checkCollision(rock)) {
        endGame();
-     } window.requestAnimationFrame()
+     } window.requestAnimationFrame(step)
 
     /**
      * Otherwise, if the rock hasn't reached the bottom of
@@ -131,7 +132,7 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
-  let gameInterval = null;
+  clearInterval(gameInterval);
   let ROCKS = [];
   ;
   alert("YOU LOSE!")
