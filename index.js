@@ -88,9 +88,21 @@ function createRock(x) {
      * If a rock collides with the DODGER,
      * we should call endGame()
      */
+     var top = 0
+
+  function step(rock) {
+    rock.style.top = `${top += 2}px`
+
+    if (top < 400) {
+      window.requestAnimationFrame(step)
+    }
+  }
+
+  window.requestAnimationFrame(step)
+
      if (checkCollision(rock)) {
        endGame();
-     } window.requestAnimationFrame()
+     } window.requestAnimationFrame(step)
 
     /**
      * Otherwise, if the rock hasn't reached the bottom of
@@ -120,7 +132,7 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
-  let gameInterval = null;
+  clearInterval(gameInterval);
   let ROCKS = [];
   ;
   alert("YOU LOSE!")
@@ -148,7 +160,7 @@ function moveDodgerLeft() {
   // implement me!
   /**
    * This function should move DODGER to the left
-   * (mabye 4 pixels?). Use window.requestAnimationFrame()!
+   * (maybe 4 pixels?). Use window.requestAnimationFrame()!
    */
    var leftNumbers = dodger.style.left.replace('px', '')
    var left = parseInt(leftNumbers, 10)
@@ -162,7 +174,7 @@ function moveDodgerRight() {
   // implement me!
   /**
    * This function should move DODGER to the right
-   * (mabye 4 pixels?). Use window.requestAnimationFrame()!
+   * (maybe 4 pixels?). Use window.requestAnimationFrame()!
    */
    var rightNumbers = dodger.style.left.replace('px', '')
    var right = parseInt(rightNumbers, 10)
